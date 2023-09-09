@@ -8,7 +8,9 @@
       "applicationUrl": "https://localhost:20030",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "Auth__BaseUrl": "https://localhost:20000"
+        "Auth__BaseUrl": "https://localhost:20000",
+        "Auth__IssuerUrl__0": "https://auth:80",
+        "Auth__IssuerUrl__1": "https://localhost:20000"
       }
     }
   }

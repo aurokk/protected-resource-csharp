@@ -12,13 +12,19 @@ services.AddSwaggerGen();
 
 services
     .AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-    .AddIdentityServerAuthentication(options =>
-    {
-        var authority = configuration.GetValue<string>("Auth:BaseUrl") ?? throw new Exception();
-        options.Authority = authority;
-        options.ApiName = "protected-resource";
-        options.RequireHttpsMetadata = false;
-    });
+    .AddIdentityServerAuthentication(
+        authenticationScheme: IdentityServerAuthenticationDefaults.AuthenticationScheme,
+        jwtBearerOptions: options =>
+        {
+            options.Audience = "protected-resource";
+            var authority = configuration.GetValue<string>("Auth:BaseUrl") ?? throw new Exception();
+            options.Authority = authority;
+            options.RequireHttpsMetadata = false;
+            var issuers = configuration.GetSection("Auth:IssuerUrl").Get<string[]>() ?? throw new Exception();
+            options.TokenValidationParameters.ValidIssuers = issuers;
+        },
+        introspectionOptions: null
+    );
 
 services
     .AddAuthorization(options =>
