@@ -7,7 +7,8 @@
       "launchBrowser": false,
       "applicationUrl": "https://localhost:20030",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Auth__BaseUrl": "https://localhost:20000"
       }
     }
   }

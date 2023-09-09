@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
+var configuration = builder.Configuration;
 
 services.AddControllers();
 services.AddEndpointsApiExplorer();
@@ -13,7 +14,8 @@ services
     .AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
     .AddIdentityServerAuthentication(options =>
     {
-        options.Authority = "https://localhost:20000";
+        var authority = configuration.GetValue<string>("Auth:BaseUrl") ?? throw new Exception();
+        options.Authority = authority;
         options.ApiName = "protected-resource";
     });
 
