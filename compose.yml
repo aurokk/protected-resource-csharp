@@ -7,6 +7,8 @@ services:
       ASPNETCORE_Kestrel__Certificates__Default__Password: localhost
       ASPNETCORE_URLS: "http://+;https://+"
       Auth__BaseUrl: "http://auth:80"
+      Auth__IssuerUrl__0: "https://auth:80"
+      Auth__IssuerUrl__1: "https://localhost:20000"
     ports:
       - "20030:443"
     volumes:
