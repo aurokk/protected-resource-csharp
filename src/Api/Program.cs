@@ -17,6 +17,7 @@ services
         var authority = configuration.GetValue<string>("Auth:BaseUrl") ?? throw new Exception();
         options.Authority = authority;
         options.ApiName = "protected-resource";
+        options.RequireHttpsMetadata = false;
     });
 
 services
