@@ -1,0 +1,7 @@
+.git
+.idea
+.gitignore
+compose.yml
+README.md
+**/bin
+**/obj
