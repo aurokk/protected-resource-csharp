@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  protected-resource:
+  protected-resource-csharp:
     build: .
     environment:
       ASPNETCORE_Kestrel__Certificates__Default__Path: /https/localhost.pfx
