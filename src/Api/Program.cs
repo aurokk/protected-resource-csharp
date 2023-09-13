@@ -16,7 +16,7 @@ services
         authenticationScheme: IdentityServerAuthenticationDefaults.AuthenticationScheme,
         jwtBearerOptions: options =>
         {
-            options.Audience = "protected-resource";
+            options.Audience = "beam";
             var authority = configuration.GetValue<string>("Auth:BaseUrl") ?? throw new Exception();
             options.Authority = authority;
             options.RequireHttpsMetadata = false;
@@ -30,7 +30,7 @@ services
     .AddAuthorization(options =>
         options.AddPolicy(
             name: "read",
-            configurePolicy: b => b.RequireScope("protected-resource.read")
+            configurePolicy: b => b.RequireScope("beam.read")
         )
     );
 
