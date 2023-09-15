@@ -6,8 +6,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
     <ItemGroup>
-        <PackageVersion Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
-        <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10"/>
-        <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+        <PackageVersion Include="IdentityServer4.AccessTokenValidation" Version="[3.0.1,)" />
+        <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="[7.0.10,)"/>
+        <PackageVersion Include="Swashbuckle.AspNetCore" Version="[6.5.0,)"/>
     </ItemGroup>
 </Project>
