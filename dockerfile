@@ -1,10 +1,11 @@
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 
 WORKDIR /source
-COPY *.sln                 .
-COPY Directory.Build.props .
-COPY global.json           .
-COPY src/Api/*.csproj      ./src/Api/
+COPY *.sln                    .
+COPY Directory.Build.props    .
+COPY Directory.Packages.props .
+COPY global.json              .
+COPY src/Api/*.csproj         ./src/Api/
 RUN dotnet restore
 
 COPY src/.   ./src/
