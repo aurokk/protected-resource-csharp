@@ -5,6 +5,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
 var configuration = builder.Configuration;
+var webHost = builder.WebHost;
+
+{
+    var publicHttpPort = configuration.GetValue<int?>("PublicApi:HttpPort");
+    var publicHttpsPort = configuration.GetValue<int?>("PublicApi:HttpsPort");
+    var publicApiPorts = new List<string>();
+    if (publicHttpPort != null) publicApiPorts.Add($"http://+:{publicHttpPort}");
+    if (publicHttpsPort != null) publicApiPorts.Add($"https://+:{publicHttpsPort}");
+    if (!publicApiPorts.Any()) throw new Exception();
+
+    var allPorts = publicApiPorts.ToArray();
+    var allPortsUnique = publicApiPorts.ToHashSet();
+    if (allPorts.Length != allPortsUnique.Count) throw new Exception();
+
+    webHost.UseUrls(string.Join(";", allPorts));
+}
 
 services.AddControllers();
 services.AddEndpointsApiExplorer();
@@ -17,10 +33,10 @@ services
         jwtBearerOptions: options =>
         {
             options.Audience = "beam";
-            var authority = configuration.GetValue<string>("Auth:BaseUrl") ?? throw new Exception();
+            var authority = configuration.GetValue<string>("Denji:PublicApi:BaseUrl") ?? throw new Exception();
             options.Authority = authority;
             options.RequireHttpsMetadata = false;
-            var issuers = configuration.GetSection("Auth:IssuerUrl").Get<string[]>() ?? throw new Exception();
+            var issuers = configuration.GetSection("DenjiMiddleware:IssuerUrl").Get<string[]>() ?? throw new Exception();
             options.TokenValidationParameters.ValidIssuers = issuers;
         },
         introspectionOptions: null

@@ -5,12 +5,12 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
-      "applicationUrl": "https://localhost:20030",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "Auth__BaseUrl": "https://localhost:20000",
-        "Auth__IssuerUrl__0": "https://auth:80",
-        "Auth__IssuerUrl__1": "https://localhost:20000"
+        "Denji__PublicApi__BaseUrl": "https://localhost:20000",
+        "DenjiMiddleware__IssuerUrl__0": "https://localhost:20000",
+        "PublicApi__HttpPort": "20021",
+        "PublicApi__HttpsPort": "20020"
       }
     }
   }
